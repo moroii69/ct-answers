@@ -5,12 +5,13 @@ export default function Footer() {
         <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} CodeTantra Answers. All rights reserved.
         </p>
-        <p className="text-xs text-muted-foreground">
-          For any queries, reach out at{" "}
-          <a href="mailto:kurosen930@gmail.com" className="text-primary hover:underline">
-            kurosen930@gmail.com
-          </a>
-        </p>
+<p className="text-xs text-muted-foreground">
+  For questions or to report any bugs, feel free to contact me at{" "}
+  <a href="mailto:kurosen930@gmail.com" className="text-primary hover:underline">
+    kurosen930@gmail.com
+  </a>
+</p>
+
       </div>
     </footer>
   )
