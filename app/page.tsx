@@ -24,6 +24,7 @@ export default function Home() {
           </Button>
         </form>
 
+        {/* Original buttons - commented out
         <div className="grid grid-cols-2 gap-3">
           <Button asChild variant="outline" size="sm">
             <Link href="/subjects/java-theory">Java Theory</Link>
@@ -38,6 +39,44 @@ export default function Home() {
             <Link href="/subjects/dbms-lab">DBMS Lab</Link>
           </Button>
         </div>
+        */}
+
+        <div className="grid grid-cols-2 gap-3">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            disabled 
+            title="Not yet available - Coming soon!"
+            className="cursor-not-allowed opacity-50"
+          >
+            Java Theory
+          </Button>
+          <Button asChild variant="outline" size="sm">
+            <Link href="/subjects/java-lab">Java Lab</Link>
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            disabled 
+            title="Not yet available - Coming soon!"
+            className="cursor-not-allowed opacity-50"
+          >
+            DBMS Theory
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            disabled 
+            title="Not yet available - Coming soon!"
+            className="cursor-not-allowed opacity-50"
+          >
+            DBMS Lab
+          </Button>
+        </div>
+
+        <p className="text-sm text-muted-foreground mt-4">
+          Java Theory, DBMS Theory, and DBMS Lab will be available shortly...
+        </p>
       </div>
     </div>
   )
