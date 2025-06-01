@@ -969,6 +969,28 @@ Note: Iterate the while-loop in run() method upto **n** times in Producer and Co
 `,
         solution: `
 package q63229;
+import java.util.Scanner;
+class ProdCons {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("number of items to be produced and consumed: ");
+        int numItems = sc.nextInt();
+        Product p = new Product(numItems);
+        Thread producerThread = new Thread(new Producer(p));
+        Thread consumerThread = new Thread(new Consumer(p));
+        producerThread.start();
+        consumerThread.start();
+        sc.close();
+    }
+}
+
+class Product {
+    private int value;
+    private boolean available = false;
+	int n;
+    Product(int n) {
+		this.n = n;
+	}
 
 	public synchronized void put (int val) {
 		while (available) {
@@ -1025,9 +1047,7 @@ class Consumer implements Runnable {
 			p.get();
 		}
 	}
-        
-    
-}
+
 `, 
 language: "java",
         testCasesPassed: 2,
