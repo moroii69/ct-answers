@@ -7,13 +7,14 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import TermsDialog from "@/components/terms-dialog"
 import DisclaimerBanner from "@/components/disclaimer-banner"
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "CodeTantra Answers",
   description: "Find programming solutions",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -33,6 +34,7 @@ export default function RootLayout({
           </div>
           <TermsDialog />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
