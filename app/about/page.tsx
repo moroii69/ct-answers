@@ -1,21 +1,12 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import Image from "next/image"
 
 export default function AboutPage() {
   return (
     <div className="container px-4 py-8 md:py-12">
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 text-center">
-          <div className="relative w-32 h-32 mx-auto mb-4">
-            <Image
-              src="/placeholder.svg?height=128&width=128"
-              alt="CodeTantra Answers"
-              width={128}
-              height={128}
-              className="rounded-full bg-primary/10"
-            />
-          </div>
+
           <h1 className="text-3xl font-bold">Disclaimer</h1>
         </div>
 
