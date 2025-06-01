@@ -143,7 +143,7 @@ public class Main {
     difficulty: "Medium",
     subject: "java-lab",
     questionType: "code",
-    codetantraLink: "https://codetantra.com/question/3.1.1",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=676fc211f95f925a10cebfe6#/contents/676fc40cf95f925a10cec54c/676fc422f95f925a10cec571/676fe4b694710624ddd3c4cc",
     question: `
 Write a Java program that reads a line of integers (separated by spaces), then displays each integer on a new line, followed by the sum of all the integers. Use the 'StringTokenizer' class from 'java.util' to tokenize the input.
 
@@ -184,7 +184,7 @@ public class sumofIntegers {
     {
         // Question ID: 1.2.2
         id: "1.2.2",
-        title: "Single Inheritance",
+        title: "Person's name and age - Single Inheritance",
         description: "Person's name and age - Single Inheritance",
         difficulty: "Medium",
         subject: "java-lab",
@@ -265,7 +265,7 @@ public class MainPerson {
       {
         // Question ID: 1.2.3
         id: "1.2.3",
-        title: "Multilevel Inheritance",
+        title: "Write a Java program to illustrate the multilevel inheritance concept",
         description: "Write a Java program to illustrate the multilevel inheritance concept.",
         difficulty: "Hard",
         subject: "java-lab",
@@ -569,7 +569,7 @@ public class Calc {
   {
     // Question ID: 1.3.3
          id: "1.3.3",
-        title: "Abstract Class",
+        title: "Write a Java program to find Areas of different Shapes using abstract class",
         description: "Write a Java program to illustrate the abstract class concept.",
         difficulty: "Hard",
         subject: "java-lab",
@@ -661,7 +661,7 @@ public class Area {
     {
     // Question ID: 1.4.1
          id: "1.4.1",
-        title: "Exception Handling",
+        title: "Exception Handling using Custom Exception Weight Limit",
         description: "Exception Handling using Custom Exception Weight Limit",
         difficulty: "Hard",
         subject: "java-lab",
@@ -730,7 +730,7 @@ class InvalidWeight extends Exception {
     {
     // Question ID: 1.4.2
          id: "1.4.2",
-        title: "Runnable Interface.",
+        title: "Thread to Print Even and Odd Numbers",
         description: "Write a Java program using the Runnable interface to create two threads.",
         difficulty: "Hard",
         subject: "java-lab",
