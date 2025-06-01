@@ -45,7 +45,6 @@ export default function Home() {
           <Button 
             variant="outline" 
             size="sm" 
-            disabled 
             title="Not yet available - Coming soon!"
             className="cursor-not-allowed opacity-50"
           >
@@ -57,20 +56,13 @@ export default function Home() {
           <Button 
             variant="outline" 
             size="sm" 
-            disabled 
             title="Not yet available - Coming soon!"
             className="cursor-not-allowed opacity-50"
           >
             DBMS Theory
           </Button>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            disabled 
-            title="Not yet available - Coming soon!"
-            className="cursor-not-allowed opacity-50"
-          >
-            DBMS Lab
+          <Button asChild variant="outline" size="sm">
+            <Link href="/subjects/dbms-lab">DBMS Lab</Link>
           </Button>
         </div>
 
