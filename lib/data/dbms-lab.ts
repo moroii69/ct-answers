@@ -2017,7 +2017,7 @@ You are tasked with managing a retail company's SQL database. The company uses a
 
 You need to create a trigger to ensure that the inventory levels are updated correctly whenever a new sale is inserted.
 
-**Table Definitions and Data:**
+**Table Definitions and Data:**\n
 
 products:
 | Column Name | Data Type     | Constraints              |
@@ -2097,7 +2097,7 @@ You are tasked with managing a retail company's SQL database. The company uses a
 You need to create a trigger to ensure that the inventory levels are updated correctly whenever a sale is deleted.
 
 
-Table Definitions and Data:
+Table Definitions and Data: \n
 products:
 | Column Name | Data Type     | Constraints          |
 |-------------|---------------|---------------------|
@@ -2184,7 +2184,7 @@ You are tasked with managing a retail company's SQL database. The company uses a
 You need to create a trigger to ensure that the inventory levels are updated correctly whenever a sale is updated.
 
 
-Table Definitions and Data:
+Table Definitions and Data: \n
 products:
 | Column Name | Data Type     | Constraints          |
 |-------------|---------------|---------------------|
