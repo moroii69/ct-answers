@@ -1811,8 +1811,8 @@ END;
 $$;
 `,
     language: "sql",
-    testCasesPassed: 2,
-    totalTestCases: 2,
+    testCasesPassed: 1,
+    totalTestCases: 1,
     totalHiddenTestCases: 0,
 
   },
