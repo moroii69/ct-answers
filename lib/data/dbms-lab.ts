@@ -1279,7 +1279,7 @@ Requirements:
 - You need to write the required the logic such that the function should return a single character grade (A, B, C, D, or F) based on the average of the marks.
 
 The formula for calculating the grade is:
-- Compute the total marks by adding the marks of all 6 subjects.
+- Compdute the total marks by adding the marks of all 6 subjects.
 - Calculate the average by dividing the total marks by 6.
 - Determine the grade based on the computed average using the criteria listed above.
 
@@ -1325,5 +1325,495 @@ END $$ LANGUAGE plpgsql;
     testCasesPassed: 4,
     totalTestCases: 4,
     totalHiddenTestCases: 0,
+  },
+
+
+
+                               {
+    id: "5.1.4",
+    title: "Sum of Digits",
+    description: "Write a SQL function to calculate the sum of digits of a integer",
+    difficulty: "Medium",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/67760d9f27852b5fa9227bb7/67760ddf27852b5fa9227bde/679365bc21a60e0acd064811",
+    question: `
+In this task, you are required to write a SQL function that calculates the sum of the digits of a given integer. The function should take a single integer as input and return the sum of its digits.
+
+**Function Signature**:
+\`\`\`
+CREATE OR REPLACE FUNCTION sum_of_digits(v_num INTEGER)
+RETURNS INTEGER AS $$
+\`\`\`
+
+**Steps**:
+
+- Define the function sum_of_digits which will take an integer as input.
+- Extract each digit of the number using modulus (%) and integer division (/).
+- Add the digits together.
+- Return the sum of digits.
+
+`,
+    solution: `
+CREATE OR REPLACE FUNCTION sum_of_digits(v_num INTEGER)
+RETURNS INTEGER AS $$
+DECLARE
+    digit INTEGER;
+    sum INTEGER := 0;
+    num INTEGER := ABS(v_num);
+BEGIN
+    WHILE num > 0 LOOP
+        digit := num % 10;
+        sum := sum + digit;
+        num := num / 10;
+    END LOOP;
+
+    RETURN sum;
+END $$ LANGUAGE plpgsql;
+
+
+`,
+    language: "sql",
+    testCasesPassed: 3,
+    totalTestCases: 3,
+    totalHiddenTestCases: 0,
+  },
+
+
+
+
+                                 {
+    id: "5.1.5",
+    title: "Reversing a Number",
+    description: "Write a pgSQL function to reverse a given number",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/67760d9f27852b5fa9227bb7/67760ddf27852b5fa9227bde/668e60ae961c047cbe6ec303",
+    question: `
+Write a pgSQL function to reverse a given integer number.
+
+Create a function named reverse_number that takes an integer parameter n and returns the reversed number as an integer.
+
+**Function Signature**:
+\`\`\`
+CREATE OR REPLACE FUNCTION reverse_number(n INTEGER)
+RETURNS INTEGER AS $$
+\`\`\`
+
+`,
+    solution: `
+CREATE OR REPLACE FUNCTION reverse_number(n INTEGER)
+RETURNS INTEGER AS $$
+DECLARE
+	reversed_str TEXT := '';
+	digit CHAR;
+	n_str TEXT;
+BEGIN
+	n_str := n::TEXT;
+
+	FOR i IN REVERSE LENGTH(n_str)..1 LOOP
+		reversed_str := reversed_str || SUBSTRING(n_str, i, 1);
+	END LOOP;
+
+
+	RETURN reversed_str::INTEGER;
+END;
+$$ LANGUAGE plpgsql;
+
+
+`,
+    language: "sql",
+    testCasesPassed: 6,
+    totalTestCases: 6,
+    totalHiddenTestCases: 0,
+  },
+
+
+
+  
+                                 {
+    id: "5.1.6",
+    title: "Prime Number",
+    description: "Write a pgSQL function to check if a number is prime.",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/67760d9f27852b5fa9227bb7/67760ddf27852b5fa9227bde/679367c121a60e0acd064d8d",
+    question: `
+
+In this task, you are required to write a SQL function that checks whether a given number is prime. A prime number is a number greater than 1 that has no divisors other than 1 and itself.
+
+Function Signature:
+\`\`\`
+CREATE OR REPLACE FUNCTION is_prime(v_num INTEGER)
+RETURNS TEXT AS $$
+\`\`\`  
+
+**Steps**:
+
+- Define the function is_prime which will take an integer as input.
+- Always assume the number is greater than 2
+- Check if the number is divisible by any integer from 2 to the square root of the number.
+- If no divisors are found, return 'Prime', else return 'Not Prime'.
+
+`,
+    solution: `
+CREATE OR REPLACE FUNCTION is_prime(v_num INTEGER)
+RETURNS TEXT AS $$
+DECLARE
+	i INTEGER;
+	max_limit INTEGER;
+BEGIN
+
+	max_limit := FLOOR(SQRT(v_num));
+
+	FOR i IN 2..max_limit LOOP
+		IF v_num % i = 0 THEN
+			RETURN 'Not Prime';
+		END IF;
+	END LOOP;
+
+	RETURN 'Prime';
+END;
+$$ LANGUAGE plpgsql;
+
+
+`,
+    language: "sql",
+    testCasesPassed: 2,
+    totalTestCases: 2,
+    hiddenTestCasesPassed: 1,
+    totalHiddenTestCases: 1,
+
+  },
+
+
+
+
+                                   {
+    id: "5.1.7",
+    title: "Fact Function to find Factorial",
+    description: "Write a pgSQL function to find the factorial of a number.",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/67760d9f27852b5fa9227bb7/67760ddf27852b5fa9227bde/65eed1127af14534324027e8d",
+    question: `
+
+Ceate a PL/SQL function fact that calculates and returns the factorial of an integer
+
+**Function Signature**:-
+\`\`\`
+CREATE OR REPLACE FUNCTION fact(n INTEGER)
+RETURNS INTEGER AS $$
+\`\`\`
+
+**Steps**:
+
+- Define the function fact which will take an integer n as input.
+- Initialize a variable b to store the result of the factorial, and set it to 1 initially.
+- Use a loop to multiply b by each integer from 1 to n.
+- After the loop completes, return the calculated factorial as the output of the function.
+
+
+**Expected Output**:
+
+- When the function is called with fact(5), it should return 120
+- When the function is called with fact(0), it should return 1.
+`,
+    solution: `
+CREATE OR REPLACE FUNCTION fact(n INTEGER)
+RETURNS INTEGER AS $$
+DECLARE
+	b INTEGER := 1;
+	i INTEGER;
+BEGIN
+	IF n < 0 THEN
+		RAISE EXCEPTION 'Factorial is not defined for negative numbers';
+	END IF;
+
+	FOR i IN 1..n LOOP
+		b := b * i;
+	END LOOP;
+
+	RETURN b;
+END;
+
+$$ LANGUAGE plpgsql;
+
+
+`,
+    language: "sql",
+    testCasesPassed: 2,
+    totalTestCases: 2,
+    hiddenTestCasesPassed: 4,
+    totalHiddenTestCases: 4,
+
+  },
+
+
+
+                                     {
+    id: "6.1.1",
+    title: "IN, OUT AND INOUT Parameters",
+    description: "Write a pgSQL function to demonstrate IN, OUT and INOUT parameters",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/67760da527852b5fa9227bbb/67760de227852b5fa9227be0/66a09882fef0284825ff1d32",
+    question: `
+
+Write a stored procedure named add_numbers that demonstrates the use of IN, OUT, and INOUT parameters. The procedure should perform the following operations:
+1. Accept three parameters:
+- a (integer) as an IN parameter.
+- b (integer) as an IN parameter.
+- initial_result (integer) as an INOUT parameter.
+
+2. Calculate the sum of the a and b parameters and update initial_result with this sum.
+
+3. Output the final sum through an OUT parameter named final_result.
+
+
+
+Note: A partial code has been given to you in the editor, complete the required code.
+
+`,
+    solution: `
+CREATE OR REPLACE PROCEDURE add_numbers(
+     
+     
+       IN a INT,                -- Input parameter for the first integer
+       IN b INT,                -- Input parameter for the second integer
+       INOUT initial_result INT, -- INOUT parameter to receive and update the result
+       INOUT final_result INT     -- Output parameter to return the final sum
+
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+	initial_result := a+b;
+	final_result := initial_result;
+END;
+$$;
+
+`,
+    language: "sql",
+    testCasesPassed: 2,
+    totalTestCases: 2,
+    hiddenTestCasesPassed: 2,
+    totalHiddenTestCases: 2,
+
+  },
+
+
+
+
+
+                                       {
+    id: "6.1.2",
+    title: "Stored Procedure - Retrieving Most Recent Order Details for a Customer",
+    description: "Write a stored procedure to retrieve the most recent order details for a customer",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/67760da527852b5fa9227bbb/67760de227852b5fa9227be0/66a09882fef0284825ff1d32",
+    question: `
+
+You are tasked with creating a stored procedure get_order_details_by_customer that retrieves the order details for a given customer from the orders table. The procedure should accept a customer ID as an input parameter and return the following details for the most recent order associated with that customer:
+- order_id
+- order_date
+- required_date
+- shipped_date
+
+
+Stored Procedure "get_order_details_by_customer" Definition: 
+
+Input Parameter: p_customer_id (of type INT): Customer ID for which the order details need to be retrieved.
+
+
+**Functionality**:
+
+- The stored procedure will retrieve the most recent order based on the order_date for the given p_customer ID.
+- The procedure will raise a notice with the message: "Fetching order details for customer ID: [p_customer_id]" when executed.
+- The order details should be fetched in descending order of order_date (i.e., the most recent order first), and only one row should be fetched.
+- In the query, reference the customer_id of the table to the procedure's input parameter as p_customer_id to correctly fetch the order details for the specified customer.
+
+
+The procedure should return the details for the most recent order of the specified customer in the following format:
+
+- order_id (of type INT): The ID of the most recent order.
+- order_date (of type DATE): The date the order was placed.
+- required_date (of type DATE): The date the order is required by.
+- shipped_date (of type DATE): The date the order was shipped.
+`,
+    solution: `
+CREATE OR REPLACE PROCEDURE get_order_details_by_customer(
+    IN p_customer_id INT,
+    OUT order_id INT,
+    OUT order_date DATE,
+    OUT required_date DATE,
+    OUT shipped_date DATE
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RAISE NOTICE 'Fetching order details for customer ID: %', p_customer_id;
+
+    SELECT 
+        o.order_id,
+        o.order_date,
+        o.required_date,
+        o.shipped_date
+    INTO 
+        order_id,
+        order_date,
+        required_date,
+        shipped_date
+    FROM 
+        orders o
+    WHERE 
+        o.customer_id = p_customer_id
+    ORDER BY 
+        o.order_date DESC
+    LIMIT 1;
+END;
+$$;
+
+
+`,
+    language: "sql",
+    testCasesPassed: 2,
+    totalTestCases: 2,
+    totalHiddenTestCases: 0,
+
+  },
+
+
+
+  
+                                       {
+    id: "6.1.3",
+    title: "Stored Procedures - Calculating Total Ordered Quantity for a Given Product",
+    description: "Write a stored procedure to calculate the total ordered quantity for a specific product.",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/67760da527852b5fa9227bbb/67760de227852b5fa9227be0/67a01032e02f6d031c14052d",
+    question: `
+
+You are provided with a table product_orders, which contains product names and their ordered quantities. Your task is to create a stored procedure that calculates the total quantity ordered for a given product.
+
+
+
+**Instructions**:
+
+The **product_orders** table has already been created and populated with sample data. You do not need to create or insert data.
+Implement a stored procedure named get_total_quantity, which:
+
+- Accepts p_product_name (VARCHAR) as an input parameter.
+- Returns the total quantity ordered for the given product using p_total_quantity (INT) as an output parameter.
+- Uses COALESCE(SUM(quantity), 0) to handle cases where a product might not exist.
+
+Raises a NOTICE message in the format:
+\`\`\`
+NOTICE: Total Quantity for <product_name>: <total_quantity>
+\`\`\`
+
+**Table product_orders:**
+
+| Column Name | Data Type |
+|-------------|-----------|
+| product_name | VARCHAR(255)   |
+| quantity     | INT       | 
+`,
+    solution: `
+CREATE OR REPLACE PROCEDURE get_total_quantity(
+	IN p_product_name VARCHAR,
+	OUT p_total_quantity INT
+)
+
+LANGUAGE plpgsql
+AS $$
+BEGIN
+	SELECT COALESCE(SUM(quantity), 0)
+	INTO p_total_quantity
+	FROM product_orders
+	WHERE product_name = p_product_name;TRIM(LOWER(product_name)) = TRIP (LOWER(p_product_name));
+
+	RAISE NOTICE 'Total Quantity for %: %', p_product_name, p_total_quantity;
+END;
+$$;
+`,
+    language: "sql",
+    testCasesPassed: 2,
+    totalTestCases: 2,
+    totalHiddenTestCases: 0,
+
+  },
+
+
+
+
+                                         {
+    id: "6.1.4",
+    title: "Stored Procedure - Retrieving Top 10 Products Based on Highest Unit Price",
+    description: "Write a stored procedure to retrieve the top 10 products based on the highest unit price.",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/67760da527852b5fa9227bbb/67760de227852b5fa9227be0/67a0147de02f6d031c14068b",
+    question: `
+
+You are required to create a stored procedure called get_top_products that retrieves the top 10 products with the highest unit prices from the products table and raises a NOTICE for each of these products displaying their name and price.
+
+
+
+Use the products table, which has the following structure:
+\`\`\`
+CREATE TABLE products (
+  product_name VARCHAR(100),
+  unit_price NUMERIC
+);
+\`\`\`
+
+**Steps**:
+- Create the Procedure: Define a procedure named get_top_products using the CREATE OR REPLACE PROCEDURE statement.
+- Declare Local Variables: Declare two local variables:
+product_name (type VARCHAR): To store the name of the product.unit_price (type NUMERIC): To store the unit price of the product.
+- Query the Top Products: Use a FOR loop to iterate over the results of a query that fetches the top 10 products ordered by unit_price in descending order. The query should select the product_name and unit_price from the products table.
+- Raise Notice for Each Product: Inside the loop, use the RAISE NOTICE statement to print the product_name and its corresponding unit_price for each of the top 10 products.  The RAISE NOTICE statement outputs information to the log or console, displaying messages formatted as:
+\`\`\`
+RAISE NOTICE Product: <product_name>, Price: <unit_price>
+\`\`\`
+
+- **Looping Logic**: The FOR loop will automatically manage the iteration over the results of the query, ensuring that the procedure handles only the top 10 products with the highest prices.
+
+
+`,
+    solution: `
+CREATE OR REPLACE PROCEDURE get_top_products()
+LANGUAGE plpgsql
+AS $$
+DECLARE
+	v_product_name VARCHAR(100);
+	v_unit_price NUMERIC;
+BEGIN
+	FOR v_product_name, v_unit_price IN
+		SELECT product_name, unit_price
+		FROM products
+		ORDER BY unit_price DESC
+		LIMIT 10
+	LOOP
+		RAISE NOTICE 'Product: %, Price: %', v_product_name, v_unit_price;
+	END LOOP;
+END;
+$$;
+`,
+    language: "sql",
+    testCasesPassed: 2,
+    totalTestCases: 2,
+    totalHiddenTestCases: 0,
+
   },
 ]
