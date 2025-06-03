@@ -1816,4 +1816,443 @@ $$;
     totalHiddenTestCases: 0,
 
   },
+
+{
+      id: "7.1.1",
+    title: "Views - Display Products",
+    description: "Write a PostgreSQL view.",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/679eeab8a4ac7127a5521e9e/679eead1a4ac7127a5521ea9/67a143dedf84d402881537cf",
+    question: `
+You are working with a PostgreSQL database that contains a table called products, which stores details about various products in the inventory. Your task is to create a view named available_products that retrieves only the products that are currently in stock (i.e., products with a stock quantity greater than zero).
+
+**Requirements**:
+- Create a view named available_products that selects the name and stock_qty of products where stock_qty > 0.
+
+| Column Name | Data Type     | Constraints   |
+|-------------|---------------|---------------|
+| product_id  | SERIAL        | PRIMARY KEY   |
+| name        | VARCHAR(255)  | NOT NULL      |
+| stock_qty   | INT           | NOT NULL      |
+
+
+**Expected Output**: If select query is performed then the output should be displayed as below for the created view.
+| name   | stock_qty |
+|--------|-----------|
+| Laptop | 10        |
+| Chair  | 5         |
+
+
+`,
+    solution: `
+CREATE VIEW available_products AS
+SELECT name, stock_qty
+FROM products
+WHERE stock_qty > 0;
+
+`,
+    language: "sql",
+    testCasesPassed: 2,
+    totalTestCases: 2,
+    totalHiddenTestCases: 0,
+
+  },
+
+
+  {
+      id: "7.1.2",
+    title: "Views - Display Products by Category",
+    description: "Write a PostgreSQL view that displays products by category.",
+    difficulty: "Medium",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/679eeab8a4ac7127a5521e9e/679eead1a4ac7127a5521ea9/67a14944df84d4028815380c",
+    question: `
+You are working with a PostgreSQL database that contains a table called products, which stores details about various products in the inventory. Your task is to create a view named products_by_category that retrieves products grouped by their category.
+
+
+**Requirements**:
+- Create a view named products_by_category that selects category, name, and stock_qty from the products table.
+
+| Column Name | Data Type     | Constraints   |
+|-------------|---------------|---------------|
+| product_id  | SERIAL        | PRIMARY KEY   |
+| name        | VARCHAR(255)  | NOT NULL      |
+| category    | VARCHAR(255)  | NOT NULL      |
+| stock_qty   | INT           | NOT NULL      |
+
+
+**Expected Output**: If select query is performed then the output should be displayed as below for the created view.
+
+| category    | name   | stock_qty |
+|-------------|--------|-----------|
+| Electronics | Laptop | 10        |
+| Furniture   | Chair  | 5         |
+
+
+
+`,
+    solution: `
+CREATE VIEW products_by_category AS
+SELECT category, name, stock_qty
+FROM products;
+
+`,
+    language: "sql",
+    testCasesPassed: 2,
+    totalTestCases: 2,
+    totalHiddenTestCases: 0,
+
+  },
+
+
+    {
+      id: "7.1.3",
+    title: "Views - 3",
+    description: "Create a view named invoices that retrieves all the relevant details from these tables for each order..",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/679eeab8a4ac7127a5521e9e/679eead1a4ac7127a5521ea9/67a14e1bdf84d4028815384a",
+    question: `
+You are working with a PostgreSQL database that contains three tables: orders, customers, and shippers. Your task is to create a view named invoices that retrieves all the relevant details from these tables for each order.
+
+
+
+**Requirements**: Write an SQL query to create a view named invoices that retrieves order details by performing joins between the orders, customers, and shippers tables using customer_id and shipper_id as foreign keys to display the following columns:
+
+- order_id
+- customer_name (alias for customers.name)
+- customer_email (alias for customers.email)
+- customer_phone (alias for customers.phone)
+- shipper_name (alias for shippers.name)
+- shipper_contact (alias for shippers.contact)
+- order_date
+- total_amount
+
+
+The result should display all the columns listed above by joining the relevant data from the orders, customers, and shippers tables. You should also ensure that each column is correctly aliased for clarity.
+
+
+Table Schemas:
+
+**orders Table**
+
+| Column Name  | Data Type     | Constraints   |
+|--------------|---------------|----------------|
+| order_id     | SERIAL        | PRIMARY KEY    |
+| customer_id  | INT           | NOT NULL       |
+| shipper_id   | INT           | NOT NULL       |
+| order_date   | DATE          | NOT NULL       |
+| total_amount | DECIMAL(10,2) | NOT NULL       |
+
+
+
+**customers Table**
+| Column Name | Data Type     | Constraints   |
+|-------------|---------------|----------------|
+| customer_id | SERIAL        | PRIMARY KEY    |
+| name        | VARCHAR(255)  | NOT NULL       |
+| email       | VARCHAR(255)  | UNIQUE         |
+| phone       | VARCHAR(50)   | NOT NULL       |
+
+
+**shippers Table**
+| Column Name | Data Type     | Constraints   |
+|-------------|---------------|---------------|
+| shipper_id  | SERIAL        | PRIMARY KEY   |
+| name        | VARCHAR(255)  | NOT NULL      |
+| contact     | VARCHAR(50)   | NOT NULL      |
+
+
+
+**Expected Output**:
+The view should display all columns from these tables if select operation is performed as below:
+
+
+
+![Output](https://i.ibb.co/Dg15n0Lh/ssssss.png)
+
+`,
+    solution: `
+CREATE VIEW invoices AS
+SELECT
+	o.order_id,
+	c.name AS customer_name,
+	c.email AS customer_email,
+	c.phone AS customer_phone,
+	s.name AS shipper_name,
+	s.contact AS shipper_contact,
+	o.order_date,
+	o.total_amount
+FROM 
+	orders o
+JOIN
+	customers c ON o.customer_id = c.customer_id
+JOIN
+	shippers s ON o.shipper_id = s.shipper_id;
+
+`,
+    language: "sql",
+    testCasesPassed: 2,
+    totalTestCases: 2,
+    totalHiddenTestCases: 0,
+
+  },
+
+
+
+      {
+      id: "8.1.1",
+    title: "Trigger after INSERT",
+    description: "Create a trigger that updates the product quantity after a sale is inserted.",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/679eeabfa4ac7127a5521ea1/679eead7a4ac7127a5521eac/66a231c5fa5cb20ba3bb9650",
+    question: `
+You are tasked with managing a retail company's SQL database. The company uses a database to track product inventory and sales.
+
+You need to create a trigger to ensure that the inventory levels are updated correctly whenever a new sale is inserted.
+
+**Table Definitions and Data:**
+
+products:
+| Column Name | Data Type     | Constraints              |
+|-------------|---------------|---------------------------|
+| productid   | INT           | PRIMARY KEY              |
+| productname | VARCHAR       | NOT NULL                 |
+| category    | VARCHAR       | -                        |
+| price       | DECIMAL(10,2) | CHECK (price > 0)        |
+| quantity    | INT           | DEFAULT 0                |
+
+
+| productID | productName | category    | price   | quantity |
+|-----------|-------------|-------------|---------|----------|
+| 1         | Laptop      | Electronics | 1000.00 | 50       |
+| 2         | Smartphone  | Electronics | 500.00  | 100      |
+| 3         | Tablet      | Electronics | 300.00  | 75       |
+
+
+sales:
+| Column Name  | Data Type | Constraints                    |
+|--------------|-----------|-------------------------------|
+| saleid       | INT       | PRIMARY KEY                   |
+| productid    | INT       | REFERENCES products(productid) |
+| saledate     | DATE      | -                             |
+| quantitysold | INT       | CHECK (quantitysold > 0)      |
+
+
+Task
+1. Create a Trigger Function:
+Write a function named update_product_quantity that Updates the quantity in the products table by subtracting the quantitySold from the existing quantity whenever a new sale is inserted.
+
+2. Create a Trigger: Define a trigger named after_sale_insert that:
+- Fires after an insert operation on the sales table.
+- Executes the update_product_quantity function to update the products table.
+
+`,
+    solution: `
+CREATE OR REPLACE FUNCTION update_product_quantity()
+RETURNS TRIGGER AS $$
+BEGIN
+	UPDATE products
+	SET quantity = quantity - NEW.quantitysold
+	WHERE productid = NEW.productid;
+
+	return NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_sale_insert
+AFTER INSERT ON sales
+FOR EACH ROW
+EXECUTE FUNCTION update_product_quantity()
+`,
+    language: "sql",
+    testCasesPassed: 1,
+    totalTestCases: 1,
+    hiddenTestCasesPassed: 2,
+    totalHiddenTestCases: 2,
+
+  },
+
+
+
+        {
+      id: "8.1.2",
+    title: "Trigger after DELETE",
+    description: "Create a trigger that updates the product quantity after a sale is deleted.",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/679eeabfa4ac7127a5521ea1/679eead7a4ac7127a5521eac/66a34a63270ebe2eabdc1398",
+    question: `
+You are tasked with managing a retail company's SQL database. The company uses a database to track product inventory and sales.
+
+
+
+You need to create a trigger to ensure that the inventory levels are updated correctly whenever a sale is deleted.
+
+
+Table Definitions and Data:
+products:
+| Column Name | Data Type     | Constraints          |
+|-------------|---------------|---------------------|
+| productid   | INT           | PRIMARY KEY         |
+| productname | VARCHAR       | NOT NULL            |
+| category    | VARCHAR       | -                   |
+| price       | DECIMAL(10,2) | CHECK (price > 0)   |
+| quantity    | INT           | DEFAULT 0           |
+
+| productID | productName | category    | price   | quantity |
+|-----------|-------------|-------------|---------|----------|
+| 1         | Laptop      | Electronics | 1000.00 | 50       |
+| 2         | Smartphone  | Electronics | 500.00  | 100      |
+| 3         | Tablet      | Electronics | 300.00  | 75       |
+
+
+sales:
+
+| Column Name  | Data Type | Constraints                      |
+|--------------|-----------|---------------------------------|
+| saleid       | INT       | PRIMARY KEY                     |
+| productid    | INT       | REFERENCES products(productid)  |
+| saledate     | DATE      | -                               |
+| quantitysold | INT       | CHECK (quantitysold > 0)        |
+
+
+| saleid | productid | saledate   | quantitysold |
+|--------|-----------|------------|--------------|
+| 1      | 1         | 2024-07-01 | 5            |
+| 2      | 2         | 2024-07-02 | 10           |
+| 3      | 3         | 2024-07-03 | 8            |
+
+
+
+Task
+1. Create a Trigger Function: Write a function named restore_product_quantity that:
+- Updates the quantity in the products table by adding the quantitysold to the existing quantity whenever a sale is deleted.
+
+
+2. Create a Trigger: Define a trigger named after_sale_delete that:
+- Fires after a delete operation on the sales table.
+- Executes the restore_product_quantity function to update the products table.
+
+`,
+    solution: `
+CREATE OR REPLACE FUNCTION restore_product_quantity() 
+RETURNS TRIGGER AS $$
+BEGIN
+	UPDATE products
+	SET quantity = quantity + OLD.quantitysold
+	WHERE productid = OLD.productid;
+
+	RETURN NULL;
+END;
+
+$$LANGUAGE plpgsql;
+
+CREATE TRIGGER after_sales_delete
+AFTER DELETE ON sales
+FOR EACH ROW
+EXECUTE FUNCTION restore_product_quantity()
+`,
+    language: "sql",
+    testCasesPassed: 1,
+    totalTestCases: 1,
+    hiddenTestCasesPassed: 2,
+    totalHiddenTestCases: 2,
+
+  },
+
+          {
+      id: "8.1.3",
+    title: "Trigger after UPDATE",
+    description: "Create a trigger that updates the product quantity after a sale is updated.",
+    difficulty: "Hard",
+    subject: "dbms-lab",
+    questionType: "code",
+    codetantraLink: "https://lords.codetantra.com/secure/course.jsp?eucId=6770dcc1bc55a071e3955736#/contents/679eeabfa4ac7127a5521ea1/679eead7a4ac7127a5521eac/66a359bc270ebe2eabdc2171",
+    question: `
+You are tasked with managing a retail company's SQL database. The company uses a database to track product inventory and sales.
+
+
+
+You need to create a trigger to ensure that the inventory levels are updated correctly whenever a sale is updated.
+
+
+Table Definitions and Data:
+products:
+| Column Name | Data Type     | Constraints          |
+|-------------|---------------|---------------------|
+| productid   | INT           | PRIMARY KEY         |
+| productname | VARCHAR       | NOT NULL            |
+| category    | VARCHAR       | -                   |
+| price       | DECIMAL(10,2) | CHECK (price > 0)   |
+| quantity    | INT           | DEFAULT 0           |
+
+| productID | productName | category    | price   | quantity |
+|-----------|-------------|-------------|---------|----------|
+| 1         | Laptop      | Electronics | 1000.00 | 50       |
+| 2         | Smartphone  | Electronics | 500.00  | 100      |
+| 3         | Tablet      | Electronics | 300.00  | 75       |
+
+
+sales:
+
+| Column Name  | Data Type | Constraints                      |
+|--------------|-----------|---------------------------------|
+| saleid       | INT       | PRIMARY KEY                     |
+| productid    | INT       | REFERENCES products(productid)  |
+| saledate     | DATE      | -                               |
+| quantitysold | INT       | CHECK (quantitysold > 0)        |
+
+
+| saleid | productid | saledate   | quantitysold |
+|--------|-----------|------------|--------------|
+| 1      | 1         | 2024-07-01 | 5            |
+| 2      | 2         | 2024-07-02 | 10           |
+| 3      | 3         | 2024-07-03 | 8            |
+
+
+
+Task
+1. Create a Trigger Function: Write a function named update_product_quantity that:
+
+- Updates the quantity in the products table by adjusting the quantity(quantity = quantity + old quantitysold - new quantitysold) based on the old and new quantitysold values whenever a sale is updated.
+
+
+2. Create a Trigger: Define a trigger named after_sale_update that:
+- Fires after an update operation on the sales table.
+- Executes the update_product_quantity function to update the products table.
+
+`,
+    solution: `
+CREATE OR REPLACE FUNCTION update_product_quantity()
+RETURNS TRIGGER AS $$
+BEGIN
+	UPDATE products
+	SET quantity = quantity + OLD.quantitysold - NEW.quantitysold
+	WHERE productid = NEW.productid;
+
+	RETURN NULL;
+END;
+
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_sale_update
+AFTER UPDATE ON sales
+FOR EACH ROW
+EXECUTE FUNCTION update_product_quantity()
+`,
+    language: "sql",
+    testCasesPassed: 1,
+    totalTestCases: 1,
+    hiddenTestCasesPassed: 2,
+    totalHiddenTestCases: 2,
+
+  },
 ]
