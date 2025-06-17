@@ -137,7 +137,9 @@ Output: The new employee record with the provided details is inserted to the emp
 
     `,
     solution: `
-TRUNCATE TABLE employees
+INSERT INTO employees(employeeID, firstName, lastName, birthDate, hireDate, salary)
+
+VALUES ('3','Alice','Johnson', '1985-03-10', '2015-08-22', '45000.00')
 `,
     language: "sql",
     testCasesPassed: 1,
