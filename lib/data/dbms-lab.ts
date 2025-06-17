@@ -356,7 +356,7 @@ where department IN ( 'HR', 'Finance')
 You are given a database table employees with columns id, name, department, and salary.
 
 
-Write an SQL query to find the names of employees who do not work in the "HR" department using the NOT EXISTS operator.
+Write an SQL query to find the names of employees who do not work in the "HR" department using the EXISTS operator.
 
 **Example**:
 | id | name           | department | salary |
